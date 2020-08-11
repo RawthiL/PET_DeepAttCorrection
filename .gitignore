@@ -1,1 +1,6 @@
 .*
+Outputs
+TensorBoard_output
+datasets/DICOM
+*.tfrecord
+__pycache__/
