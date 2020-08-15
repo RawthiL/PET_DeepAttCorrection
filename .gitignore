@@ -4,3 +4,6 @@ TensorBoard_output
 datasets/DICOM
 *.tfrecord
 __pycache__/
+trained_models/
+test_outputs/
+*.zip
