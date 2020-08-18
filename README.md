@@ -1,6 +1,6 @@
 # Whole Body Positron Emission Tomography Attenuation Correction Map Synthesizing using 3D Deep Networks
 
-This repository contiains the code to replicate the results reported in [the publication (currently under review)](https://www.researchsquare.com/article/rs-46953/v1). 
+This repository contains the code to replicate the results reported in [the publication (currently under review)](https://www.researchsquare.com/article/rs-46953/v1). 
 It also includes additional topologies reported in the -Phd. thesis- (TO BE RELEASED).
 
 The trained models used to produce the reported results are provided [here](https://mega.nz/file/q0t1mR5K#Omg0UfYREqVqnZo_7SWSgWY7W8uwhiv6gZlwdVnZnXo). They should be decompressed in the root of the repository.
@@ -25,8 +25,8 @@ The 3D-Unet and GAN topologies were tested on 133 samples from 8 distinct datase
 
 <img src="./images/result_mosaique_AMC-009.png" width="800">
 
-The image shows the coronal and sagital central cuts of the *AMC-009* sample of the *NSCLC Radiogenomics* test dataset. Each colum represents the Non-Attenuation Correcte PET (NAC-PET) input, the sCT of the 3D U-Net, the sCT from the GAN refined 3D U-Unet and the objective CT or ground truth, respectivelly.
-The bone tissue is presented using a 3D proyection in the following image:
+The image shows the coronal and sagital central cuts of the *AMC-009* sample of the *NSCLC Radiogenomics* test dataset. Each colum represents the Non-Attenuation Correct PET (NAC-PET) input, the sCT of the 3D U-Net, the sCT from the GAN refined 3D U-Unet and the objective CT or ground truth, respectively.
+The bone tissue is presented using a 3D projection in the following image:
 
 <img src="./images/result_mosaique_AMC-009_3D.png" width="600">
 
@@ -53,13 +53,13 @@ The discriminator or critic is a 3D convolutional network:
 
 <img src="./images/critic_network_topology.png" width="600">
 
-The critic or discriminator network is a fully convolutional network with ReLU activation in all layers, only the last layer has no activation. The input of this network is a two channel volume composed of the NAC-PET volume and the real or sCT image. The output of the network is a value proportional to quality value of the  enerated image. The network is conformed by 4 resolution levels with two convolutional layers per level. Each convolution has a filter size of 3 × 3 × 3 and ReLU  ctivation. No batch or pixel normalization is applied. The last two layers of the critic are a flatten operation followed by a single dense layer with linear output.
+The critic or discriminator network is a fully convolutional network with ReLU activation in all layers, only the last layer has no activation. The input of this network is a two channel volume composed of the NAC-PET volume and the real or sCT image. The output of the network is a value proportional to quality value of the  generated image. The network is conformed by 4 resolution levels with two convolutional layers per level. Each convolution has a filter size of 3 × 3 × 3 and ReLU  activation. No batch or pixel normalization is applied. The last two layers of the critic are a flatten operation followed by a single dense layer with linear output.
 
 
 
 ### Progressive Growing GAN
 
-The progressive growing GAN (ProGAN) is based on a 3D-Unet. It's topology is similar to the GAN. The main difference is the training procedure. The ProGAN is trained from low resulutions and it is incrementally expanded untill reaching the desired resolution. The generator topology can be described as:
+The progressive growing GAN (ProGAN) is based on a 3D-Unet. It's topology is similar to the GAN. The main difference is the training procedure. The ProGAN is trained from low resolutions and it is incrementally expanded until reaching the desired resolution. The generator topology can be described as:
 
 <img src="./images/prog_gen_network_topology.png" width="800">
 
@@ -76,21 +76,21 @@ Each coloured section is a bock that grows over the previous structure. The neur
 
 ### Requirements
 
-The trainig of the model requires:
+The training of the model requires:
 * CPU RAM >= 16 GB
 * GPU RAM >= 6 GB
-* CUDA CAPABILIY > 3.6
+* CUDA CAPABILITY > 3.6
 
-The training times will largly depend on the GPU and CPU speed. A solid state storage unit is advised but not required.
+The training times will largely depend on the GPU and CPU speed. A solid state storage unit is advised but not required.
 To run the test notebooks a GPU is not required, but will speed up the process. Testing requires at least 8GB CPU RAM.
-A docker image is proveided to run the code, [here](https://hub.docker.com/r/rawthil/iar-pet), and then executing the jupyter notebbok server with:
+A docker image is provided to run the code, [here](https://hub.docker.com/r/rawthil/iar-pet), and then executing the jupyter notebook server with:
 
-<p>docker run -u $UID:$UID --gpus all -v /PATH/TO/REPOSIORY:/tf/iAR-PET -p 5000:8888 -it ar-pet jupyter notebook --ip=0.0.0.0 --allow-root</p>
+<p>docker run -u $UID:$UID --gpus all -v /PATH/TO/REPOSITORY:/tf/iAR-PET -p 5000:8888 -it ar-pet jupyter notebook --ip=0.0.0.0 --allow-root</p>
 
 and opening on the browser: [http://localhost:5000/tree/](http://localhost:5000/tree/)
 
 
-Alternativelly, the code can be run in an enviromet with python 3.6.8, jupyter notebook support and the following libraries:
+Alternatively, the code can be run in an environment with python 3.6.8, jupyter notebook support and the following libraries:
 
 * dataclasses==0.7
 * dicom==0.9.9.post1
@@ -125,7 +125,7 @@ Alternativelly, the code can be run in an enviromet with python 3.6.8, jupyter n
 
 
 
-### Datesets downloading
+### Datasets downloading
 
 The work is based on a public dataset from [The Cancer Image Archive (TCIA)](https://nbia.cancerimagingarchive.net). Within *./datasets/DICOM/* you will find a ".csv" file and a ".tcia" for each data source:
 
@@ -141,14 +141,14 @@ The work is based on a public dataset from [The Cancer Image Archive (TCIA)](htt
 
 The data can be downloaded opening the ".tcia" file using the [NBIADataRetriever](https://wiki.cancerimagingarchive.net/display/NBIA/Cancer+Imaging+Archive+User's+Guide#CancerImagingArchiveUser'sGuide-DownloadingtheNBIADataRetriever). The data must be downloaded into the *./datasets/DICOM/* folder with the "Descriptive Directory Name" option. The ".tcia" file was tested using the NBIADataRetriever v3.6 build "2020-04-03_15-44".  The ".csv" contains the same information as the ".tcia" file. 
 
-After a succesfull download the directory should look like this:
+After a successful download the directory should look like this:
 
 * *./datasets/DICOM/HNSCC/HNSCC-01-0004/...*
 * *./datasets/DICOM/HNSCC/HNSCC-01-0008/...*
 * *...*
 * *./datasets/DICOM/TCGA-THCA/TCGA-DE-A4MA/...*
 
-### TFDateset file generation (Train and Validation datasets)
+### TFDataset file generation (Train and Validation datasets)
 
 In the *./datasets/DICOM/* folder the *Generate_train_and_validation_dataset* notebook is found. It must be executed to generate the training files. This process is very long, it takes approx. 5 hs to run on a 4x3.6Ghz CPU. It will produce a large output, approx. 120 GB if using the largest resolution of 256x256x512 voxels. The process support other datasets or larger selections of the HNSCC dataset (the dataset is updated from time to time). It is advised to inspect the output to find any defective sample if using samples from outside the provided list.
 The output is a series of ".tfrecord" files, for different data resolution:
@@ -161,7 +161,7 @@ The output is a series of ".tfrecord" files, for different data resolution:
 
 ## Training
 
-The training of the different models is done usign three specific notebooks:
+The training of the different models is done using three specific notebooks:
 
 1. *./Train_3D_Unet_Model.ipynb*: Basic 3D U-Net topology (Sup. Pre-Train No GAN.Loss.) and pre-training of GAN based generators.
 2. *./Train_GAN_Model.ipynb*: Trains GAN based models, such as (see the paper for reference): 
@@ -169,18 +169,18 @@ The training of the different models is done usign three specific notebooks:
     * Sup. Pre-Train
     * Sup. No Pre-Train
     * Sup. Pre-Train RestrictedGrad.
-3. *./Train_ProGAN_Model.ipynb*: Trains the progressive growing 3D pix2pix model decribed in the thesis.
+3. *./Train_ProGAN_Model.ipynb*: Trains the progressive growing 3D pix2pix model described in the thesis.
 
-The notebooks are prepeared to use multiple GPUs as the memory requirements of the model is large. However it should work with single GPUs set-ups (if the GPU memory is larger than 6 GB).
+The notebooks are prepared to use multiple GPUs as the memory requirements of the model is large. However it should work with single GPUs set-ups (if the GPU memory is larger than 6 GB).
 
 
 ## Testing
 
 To compute the testing metrics the *./Test_Dataset.ipynb* notebook should be executed. The notebook tests a selected model using a selected test dataset. The model and dataset selection is done inside the notebook.
-After exectuion it will produce the following outputs under *./test_outputs/SELECTED_MODEL/SELECTED_DATASET/*:
+After execution it will produce the following outputs under *./test_outputs/SELECTED_MODEL/SELECTED_DATASET/*:
 
 
-* Input, synthetic CT and objecive CT images of a random sample (NAC_PET_input.png, sCT.png and objective_CT.png). If the model also computes segmentation of tissues it will create the segmentation image (Tissue_Clases.png)
+* Input, synthetic CT and objective CT images of a random sample (NAC_PET_input.png, sCT.png and objective_CT.png). If the model also computes segmentation of tissues it will create the segmentation image (Tissue_Clases.png)
 * A matrix containing the sCTs of each processed sample (CT_SYNTH_images.npy) and the segmentation image (SEGMENTED_images.npy), if available.
 * A Pandas dataframe (meassurements_dataframe.pkl) containing the following metrics:
     * SSIN:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Structural Similarity Index on the whole Field of View (FoV).
@@ -194,7 +194,7 @@ After exectuion it will produce the following outputs under *./test_outputs/SELE
     * NMSE_RoI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalized Mean Squared Error on the occupied voxels.
     * NCC_Whole:&nbsp;&nbsp;&nbsp;&nbsp;Normalized Cross Correlation on the whole FoV.
     * NCC_RoI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalized Cross Correlation on the occupied voxels.
-* Each processed sample in DICOM format, for inspection pruporses only.
+* Each processed sample in DICOM format, for inspection purposes only.
 
 
 
