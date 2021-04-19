@@ -1,6 +1,6 @@
 # Whole Body Positron Emission Tomography Attenuation Correction Map Synthesizing using 3D Deep Networks
 
-This repository contains the code to replicate the results reported in [the publication (currently under review)](https://www.researchsquare.com/article/rs-46953/v1). 
+This repository contains the code to replicate the results reported in [the preprint](https://www.researchsquare.com/article/rs-46953/v1) and [the publication](https://doi.org/10.24215/16666038.21.e4). 
 It also includes additional topologies reported in the -Phd. thesis- (TO BE RELEASED).
 
 The trained models used to produce the reported results are provided [here](https://mega.nz/file/q0t1mR5K#Omg0UfYREqVqnZo_7SWSgWY7W8uwhiv6gZlwdVnZnXo). They should be decompressed in the root of the repository.
